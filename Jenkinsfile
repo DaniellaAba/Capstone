@@ -10,9 +10,14 @@ pipeline {
                  '''
              }
          }
-         stage('Build Docker image') {
+         stage('Lint HTML') {
               steps {
                   sh 'tidy -q -e *.html'
+              }
+         }
+         stage('Build Docker image') {
+              steps {
+                  sh 'docker build . --tag=capstone-project'
               }
          }
         //  stage('Push Docker image') {
