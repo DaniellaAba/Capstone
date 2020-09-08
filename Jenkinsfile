@@ -15,11 +15,11 @@ pipeline {
                   sh 'tidy -q -e *.html'
               }
          }
-         stage('Push Docker image') {
-              steps { 
-                 aquaMicroscanner imageName: 'alpine', notCompliesCmd: '', onDisallowed: 'ignore', outputFormat: 'html'
-              }
-         }         
+        //  stage('Push Docker image') {
+        //       steps { 
+        //          aquaMicroscanner imageName: 'alpine', notCompliesCmd: '', onDisallowed: 'ignore', outputFormat: 'html'
+        //       }
+        //  }         
          stage('Deploy Container') {
               steps {
                   withAWS(region:'us-west-2',credentials:'myCredentials') {
