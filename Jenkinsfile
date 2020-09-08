@@ -17,7 +17,7 @@ pipeline {
          }
          stage('Build Docker image') {
               steps {
-                  sh 'docker build capstone --tag=capstone-project'
+                  sh 'docker build --tag=capstone-project'
               }
          }
         //  stage('Push Docker image') {
