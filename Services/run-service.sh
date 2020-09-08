@@ -1,0 +1,1 @@
+kubectl expose deployment/cap-deployment

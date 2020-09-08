@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cap-deployment
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      run: cap-deployment
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        run: cap-deployment
+    spec:
+      containers:
+      - name: cap-deployment
+        image: babyd/microservices:microservice-project
+        ports:
+        - containerPort: 80
