@@ -1,4 +1,10 @@
 pipeline {
+     environment{
+         dockerpath = "babyd/capstone"
+         dockerImage = '',
+         docker =  'dockerhubCredentials'
+     }
+
      agent any
      stages {
          stage('Build') {
@@ -17,7 +23,8 @@ pipeline {
          }
          stage('Build Docker image') {
               steps {
-                  sh 'docker build . --tag=capstone-project'
+                  sh 'dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"'
+                //   sh 'docker build . --tag=capstone-project'
               }
          }
        
@@ -26,12 +33,15 @@ pipeline {
         //          aquaMicroscanner imageName: 'alpine', notCompliesCmd: '', onDisallowed: 'ignore', outputFormat: 'html'
         //       }
          stage('Push Docker Image') {
-              steps {
-                  withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
+            //   steps {
+            //       withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
                 
-                  sh 'docker push babyd/capstone:capstone-project'    
-              }
+            //       sh 'docker push babyd/capstone:capstone-project'    
+            //   }
 
+                  sh 'docker.withREgistry('', docker){
+                      dockerImage.push
+                  }'
               }
          }
          stage('Deploy Container') {
