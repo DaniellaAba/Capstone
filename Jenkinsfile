@@ -20,6 +20,11 @@ pipeline {
                   sh 'docker build . --tag=capstone-project'
               }
          }
+         stage('Upload Docker image') {
+              steps {
+                  sh 'docker push . --tag=capstone-project'
+              }
+         }
         //  stage('Push Docker image') {
         //       steps { 
         //          aquaMicroscanner imageName: 'alpine', notCompliesCmd: '', onDisallowed: 'ignore', outputFormat: 'html'
