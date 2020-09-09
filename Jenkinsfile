@@ -31,6 +31,8 @@ pipeline {
                 
                   sh 'docker push babyd/capstone:capstone-project'    
               }
+
+              }
          }
          stage('Deploy Container') {
               steps {
