@@ -22,7 +22,7 @@ pipeline {
          }
          stage('Upload Docker image') {
               steps {
-                  sh 'docker push . --tag=capstone-project'
+                  sh 'docker push babyd/microservices:capstone-project'
               }
          }
         //  stage('Push Docker image') {
