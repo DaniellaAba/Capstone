@@ -39,7 +39,7 @@ pipeline {
             //       sh 'docker push babyd/capstone:capstone-project'    
             //   }
 
-                  sh 'docker.withREgistry('', docker){
+                  sh 'docker.withRegistry('', docker){
                       dockerImage.push()
                   }'
               }
