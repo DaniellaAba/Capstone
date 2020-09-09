@@ -27,7 +27,7 @@ pipeline {
         //       }
          stage('Push Docker Image') {
               steps {
-                  withDockerRegistry([url:'',credentials:'dockerhub']) {
+                  withDockerRegistry([url:'',credentialsId:'dockerhub']) {
                 
                   sh 'docker push babyd/capstone:capstone-project'    
               }
