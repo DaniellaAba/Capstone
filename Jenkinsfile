@@ -40,7 +40,7 @@ pipeline {
             //   }
 
                   sh 'docker.withREgistry('', docker){
-                      dockerImage.push
+                      dockerImage.push()
                   }'
               }
          }
