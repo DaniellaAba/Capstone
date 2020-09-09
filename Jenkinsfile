@@ -1,7 +1,7 @@
 pipeline {
      environment{
          dockerpath = "babyd/capstone"
-         dockerImage = '',
+         dockerImage = ''
          docker =  'dockerhubCredentials'
      }
 
