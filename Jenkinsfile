@@ -23,8 +23,11 @@ pipeline {
          }
          stage('Build Docker image') {
               steps {
-                  sh 'dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"'
+                //   sh 'dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"'
                 //   sh 'docker build . --tag=capstone-project'
+                  script{
+                      dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"
+                  }
               }
          }
        
