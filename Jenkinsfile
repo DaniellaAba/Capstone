@@ -25,10 +25,10 @@ pipeline {
         //       steps { 
         //          aquaMicroscanner imageName: 'alpine', notCompliesCmd: '', onDisallowed: 'ignore', outputFormat: 'html'
         //       }
-         stage('Deploy Container') {
+         stage('Push Docker Image') {
               steps {
                   withDockerRegistry([url:'',credentials:'dockerhub']) {
-                  sh 'docker tag capstone-project babyd/capstone:capstone-project'
+                //   sh 'docker tag capstone-project babyd/capstone:capstone-project'
                   sh 'docker push babyd/capstone:capstone-project'    
               }
          }
