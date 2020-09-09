@@ -20,16 +20,18 @@ pipeline {
                   sh 'docker build . --tag=capstone-project'
               }
          }
-         stage('Upload Docker image') {
-              steps {
-                  sh 'docker push babyd/microservices:capstone-project'
-              }
-         }
+       
         //  stage('Push Docker image') {
         //       steps { 
         //          aquaMicroscanner imageName: 'alpine', notCompliesCmd: '', onDisallowed: 'ignore', outputFormat: 'html'
         //       }
-        //  }         
+         stage('Deploy Container') {
+              steps {
+                  withDockerRegistry([url:'',credentials:'dockerhub']) {
+                  sh 'docker tag capstone-project babyd/capstone:capstone-project'
+                  sh 'docker push babyd/capstone:capstone-project'    
+              }
+         }
          stage('Deploy Container') {
               steps {
                   withAWS(region:'us-west-2',credentials:'myCredentials') {
@@ -38,5 +40,6 @@ pipeline {
                   }
               }
          }
+        //  }         
      }
 }
