@@ -24,7 +24,7 @@ pipeline {
          stage('Build Docker image') {
               steps {
                 //   sh 'dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"'
-                  sh 'building docker image'
+                  sh 'echo building docker image'
                   sh 'docker build . --tag=capstone-project'
                 //   script{
                 //       dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"
@@ -39,7 +39,7 @@ pipeline {
          stage('Push Docker Image') {
               steps {
                   withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
-                  sh 'Uploading docker image'
+                  sh 'echo "Uploading docker image"'
                   sh 'docker push babyd/capstone'
                   }
                  
