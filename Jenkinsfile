@@ -24,10 +24,10 @@ pipeline {
          stage('Build Docker image') {
               steps {
                 //   sh 'dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"'
-                //   sh 'docker build . --tag=capstone-project'
-                  script{
-                      dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"
-                  }
+                  sh 'docker build . --tag=capstone-project'
+                //   script{
+                //       dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"
+                //   }
               }
          }
        
@@ -37,15 +37,16 @@ pipeline {
         //       }
          stage('Push Docker Image') {
               steps {
-                //   withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
+                  withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
                 
-                //   sh 'docker push babyd/capstone:capstone-project'
-                 
-                  script {
-                      docker.withRegistry('', docker){
-                      dockerImage.push()
-                    }
+                  sh 'docker push babyd/capstone:capstone-project'
                   }
+                 
+                //   script {
+                //       docker.withRegistry('', docker){
+                //       dockerImage.push()
+                //     }
+                //   }
 
               }
 
