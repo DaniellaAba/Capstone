@@ -41,7 +41,7 @@ pipeline {
                   withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
                   sh 'echo "Uploading docker image"'
                   sh 'docker tag capstone-project babyd/capstone'
-                  sh 'docker push babyd/capstone:capstone-project'
+                  sh 'docker push babyd/capstone'
                   }
                  
                 //   script {
