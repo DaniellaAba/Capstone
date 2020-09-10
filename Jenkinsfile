@@ -39,7 +39,7 @@ pipeline {
               steps {
                   withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
                 
-                  sh 'docker push babyd/capstone:capstone-project'
+                  sh 'docker push babyd/capstone'
                   }
                  
                 //   script {
