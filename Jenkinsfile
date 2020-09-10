@@ -40,7 +40,8 @@ pipeline {
               steps {
                   withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
                   sh 'echo "Uploading docker image"'
-                  sh 'docker push babyd/capstone'
+                  sh 'dcoker tag capstone-project babyd/capstone'
+                  sh 'docker push babyd/capstone:capstone-project'
                   }
                  
                 //   script {
