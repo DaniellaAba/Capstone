@@ -60,7 +60,8 @@ pipeline {
                   withAWS(region:'us-west-2',credentials:'myCredentials') {
                   sh 'echo "Uploading content with AWS creds"'
                     //   s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'babyd-static-jenkins-pipeline')
-                  sh "aws eks --region us-west-2 update-kubeconfig --name capstone-linux"
+                  // sh "aws eks --region us-west-2 update-kubeconfig --name capstone-linux"
+                  sh "aws eks --region us-west-2 update-kubeconfig --name eksctl-capstone-cluster"
                   }
               }
          }

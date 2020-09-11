@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: cap-deployment
-        image: babyd/microservices:microservice-project
+        image: babyd/capstone
         ports:
         - containerPort: 80
