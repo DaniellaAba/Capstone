@@ -19,66 +19,76 @@ pipeline {
          stage('Lint HTML') {
               steps {
                   sh 'tidy -q -e *.html'
+                  sh 'make lint'
               }
          }
-         stage('Build Docker image') {
-              steps {
-                //   sh 'dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"'
-                  sh 'echo building docker image'
-                  sh 'docker build . --tag=capstone-project'
-                //   script{
-                //       dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"
-                //   }
-              }
-         }
+    //      stage('Build Docker image') {
+    //           steps {
+    //             //   sh 'dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"'
+    //               sh 'echo building docker image'
+    //               sh 'docker build . --tag=capstone-project'
+    //             //   script{
+    //             //       dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"
+    //             //   }
+    //           }
+    //      }  stage('Build Docker image') {
+    //           steps {
+    //             //   sh 'dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"'
+    //               sh 'echo building docker image'
+    //               sh 'docker build . --tag=capstone-project'
+    //             //   script{
+    //             //       dockerImage = docker.build dockerpath + ":$BUILD_NUMBER"
+    //             //   }
+    //           }
+    //      }
        
-        //  stage('Push Docker image') {
-        //       steps { 
-        //          aquaMicroscanner imageName: 'alpine', notCompliesCmd: '', onDisallowed: 'ignore', outputFormat: 'html'
-        //       }
-         stage('Push Docker Image') {
-              steps {
-                  withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
-                  sh 'echo "Uploading docker image"'
-                  sh 'docker tag capstone-project babyd/capstone'
-                  sh 'docker push babyd/capstone'
-                  }
+    //     //  stage('Push Docker image') {
+    //     //       steps { 
+    //     //          aquaMicroscanner imageName: 'alpine', notCompliesCmd: '', onDisallowed: 'ignore', outputFormat: 'html'
+    //     //       }
+    //      stage('Push Docker Image') {
+    //           steps {
+    //               withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
+    //               sh 'echo "Uploading docker image"'
+    //               sh 'docker tag capstone-project babyd/capstone'
+    //               sh 'docker push babyd/capstone'
+    //               }
                  
-                //   script {
-                //       docker.withRegistry('', docker){
-                //       dockerImage.push()
-                //     }
-                //   }
+    //             //   script {
+    //             //       docker.withRegistry('', docker){
+    //             //       dockerImage.push()
+    //             //     }
+    //             //   }
 
-              }
+    //           }
 
                  
-              }
-        //  }
-         stage('Deploy Container') {
-              steps {
-                  withAWS(region:'us-west-2',credentials:'myCredentials') {
-                  sh 'echo "Uploading content with AWS creds"'
-                    //   s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'babyd-static-jenkins-pipeline')
-                  // sh "aws eks --region us-west-2 update-kubeconfig --name capstone-linux"
-                  sh "aws eks --region us-west-2 update-kubeconfig --name capstone"
-                  // sh "kubectl create deployment capstone --image=babyd/capstone:v1"
-                  sh "kubectl set image deployments/capstone capstone=babyd/capstone"
-                  sh "kubectl apply -f Services/capstone-deployment.yml"
-                  sh "kubectl get nodes"
-                  sh "kubectl get deployment"
-                  sh "kubectl get pod -o wide"
-                  sh "kubectl get service/capstone"
-                  }
-              }
-         }
+    //           }
+    //     //  }
+    //      stage('Deploy Container') {
+    //           steps {
+    //               withAWS(region:'us-west-2',credentials:'myCredentials') {
+    //               sh 'echo "Uploading content with AWS creds"'
+    //                 //   s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'babyd-static-jenkins-pipeline')
+    //               // sh "aws eks --region us-west-2 update-kubeconfig --name capstone-linux"
+    //               sh "aws eks --region us-west-2 update-kubeconfig --name capstone"
+    //               // sh "kubectl create deployment capstone --image=babyd/capstone:v1"
+    //               sh "kubectl set image deployments/capstone capstone=babyd/capstone"
+    //               sh "kubectl apply -f Services/capstone-deployment.yml"
+    //               sh "kubectl get nodes"
+    //               sh "kubectl get deployment"
+    //               sh "kubectl get pod -o wide"
+    //               sh "kubectl get service/capstone"
+    //               }
+    //           }
+    //      }
 
-        stage("Cleaning up") {
-              steps{
-                    echo 'Cleaning up...'
-                    sh "docker system prune"
-              }
-        }
-        //  }         
-     }
+    //     stage("Cleaning up") {
+    //           steps{
+    //                 echo 'Cleaning up...'
+    //                 sh "docker system prune"
+    //           }
+    //     }
+    //     //  }         
+    //  }
 }
