@@ -19,7 +19,7 @@ pipeline {
          stage('Lint HTML') {
               steps {
                   sh 'tidy -q -e *.html'
-                  sh 'make lint'
+                  sh 'hadolint ./Dockerfile'
               }
          }
         //  stage('Build Docker image') {
