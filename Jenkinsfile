@@ -62,10 +62,12 @@ pipeline {
                     //   s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'babyd-static-jenkins-pipeline')
                   // sh "aws eks --region us-west-2 update-kubeconfig --name capstone-linux"
                   sh "aws eks --region us-west-2 update-kubeconfig --name capstone"
+                  sh "kubectl config use-context arn:aws:eks:us-west-2:088693160200:cluster/capstone"
                   // sh "kubectl create deployment capstone --image=babyd/capstone:v1"
                   sh "kubectl set image deployments/capstone capstone=babyd/capstone"
                   sh "kubectl apply -f Services/capstone-deployment.yml"
                   sh "kubectl get nodes"
+                  sh "kubectl get pod -o wide"
                   sh "kubectl get deployment"
                   sh "kubectl get service/capstone"
                   }
