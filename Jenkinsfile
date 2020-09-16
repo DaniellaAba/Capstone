@@ -48,7 +48,7 @@ pipeline {
                   //     docker.withRegistry('', docker){
                   //     dockerImage.push()
                   //   }
-                  }
+                  // }
 
               }
 
