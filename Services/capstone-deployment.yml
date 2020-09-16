@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: babyd-capstone
+  name: capstone
   namespace: default
 spec:
   selector:
@@ -19,7 +19,7 @@ spec:
         run: capstone
     spec:
       containers:
-      - name: capstone
+      - name: capst
         image: babyd/capstone
         ports:
         - containerPort: 80
