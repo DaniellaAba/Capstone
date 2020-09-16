@@ -66,7 +66,7 @@ pipeline {
                   sh "kubectl config use-context arn:aws:eks:us-west-2:088693160200:cluster/capstone"
                   // sh "kubectl create deployment capstone --image=babyd/capstone:v1"
                   sh "kubectl run capstone --image=babyd/capstone"
-                  sh "kubectl set image deployments/capstone capstone=babyd/capstone"
+                  sh "kubectl set image deployments/babyd-capstone capstone=babyd/capstone"
                   sh "kubectl apply -f Services/capstone-deployment.yml"
                   sh "kubectl get nodes"
                   sh "kubectl get pod -o wide"
