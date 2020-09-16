@@ -37,18 +37,18 @@ pipeline {
         //          aquaMicroscanner imageName: 'alpine', notCompliesCmd: '', onDisallowed: 'ignore', outputFormat: 'html'
         //       }
          stage('Push Docker Image') {
-              // steps {
-              //     withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
-              //     sh 'echo "Uploading docker image"'
-              //     sh 'docker tag capstone-project babyd/capstone'
-              //     sh 'docker push babyd/capstone'
-              //     }
+              steps {
+                  withDockerRegistry([url:'',credentialsId:'dockerhubCredentials']) {
+                  sh 'echo "Uploading docker image"'
+                  // sh 'docker tag capstone-project babyd/capstone'
+                  // sh 'docker push babyd/capstone'
+                  }
                  
-                //   script {
-                //       docker.withRegistry('', docker){
-                //       dockerImage.push()
-                //     }
-                //   }
+                  // script {
+                  //     docker.withRegistry('', docker){
+                  //     dockerImage.push()
+                  //   }
+                  }
 
               }
 
